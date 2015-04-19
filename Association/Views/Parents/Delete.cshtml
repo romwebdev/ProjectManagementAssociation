@@ -1,0 +1,113 @@
+﻿@model Association.Models.Parent
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+    </div>
+    <h3 style="color:red;">Voulez-vous supprimer @Model.FullName ?</h3>
+    <div class="modal-body">
+        <h4>Informations du parent :</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_civility)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_civility)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_firstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_firstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_mobile)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_mobile)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_otherPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_otherPhone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_adress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_adress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_city)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_city)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_postalCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_postalCode)
+            </dd>
+
+        </dl>
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">No</button>
+            <input class="btn btn-danger" type="submit" value="Yes" />
+        </div>
+    }
+</div>

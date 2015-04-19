@@ -1,0 +1,34 @@
+﻿        <div class="form-group">
+            <label class="control-label col-md-2">Les parents</label>
+            <div class="col-md-offset">
+
+                        @{
+                            List<Association.ViewsModel.StudentIndexData> parents = ViewBag.Parents;
+                            var countParent = parents.Count();
+                            if (parents != null)
+                            { 
+                                var count = 0;
+                                foreach (var parent in parents)
+                                {
+                                    
+                                    if (parent.Assigned == true)
+                                    {
+                                        @:<span>
+                                            @parent.FullName @:(id @parent.ParentID)
+                                            @:</span><br />
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+
+                                }
+                                if (countParent == count)
+                                {
+                                    @:Aucune(s) affiliation(s) 
+                                }
+                            }
+}
+
+</div>
+            </div>

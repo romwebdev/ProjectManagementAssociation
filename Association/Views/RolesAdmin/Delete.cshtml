@@ -1,0 +1,40 @@
+﻿@model IdentitySample.Models.ApplicationRole
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Suppresion</h2>
+<hr />
+<h3 class="text-danger">Voulez-vous supprimer le role @Model.Name ?</h3>
+
+<p class="text-danger">Supprimer ce rôle supprimera tous les utilisateurs dépendant de ce rôle mais ne supprimera pas les utilisateurs</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color right">
+            <input type="submit" value="Delete" class="btn btn-default btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

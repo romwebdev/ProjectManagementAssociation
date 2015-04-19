@@ -1,0 +1,137 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.clear-text {
+    /*margin-top: -24px;
+    margin-left: 220px;*/
+    cursor: pointer;
+}
+.vert-align tr>td {
+    vertical-align: middle; !important
+}
+
+.action-edit-male {
+    background-image: url(images/action-edit-m.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+.action-edit-female{
+    background-image: url(images/action-edit-f.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+
+/*.action-edit {
+    background-image: url(images/action-edit-16.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}*/
+.action-delete-male {
+    background-image: url(images/action-delete-m.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+.action-delete-female {
+    background-image: url(images/action-delete-f.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+.action-details-female {
+    background-image: url(images/action-details-f.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+.action-details-male {
+    background-image: url(images/action-details-m.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+span.glyphicon {
+    vertical-align: middle;
+    margin-top: 5px;
+}
+/*.ui-autocomplete-input {
+    z-index: 1051; !important;
+    z-index: 1051;
+}
+*/
+/*.ui-autocomplete {
+    position: absolute;
+}*/

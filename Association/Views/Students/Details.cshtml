@@ -1,0 +1,142 @@
+﻿@model Association.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Elève Details</h4>
+    </div>
+
+
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.small_image)
+            </dt>
+            <dd>
+                @{
+                    if (Model.small_image != null && Model.small_image != "")
+                    {
+                        <img src="@Url.Content(Model.small_image)" />
+                    }
+                    else
+                    {
+                        <img src="~/Images/identity02.jpg" />
+                    }
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FullName)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_sexe)
+            </dt>
+
+            <dd>
+                @{ var sexe = Model.student_sexe == true ? "Garçon" : "Fille"; }
+                @sexe
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_type)
+            </dt>
+
+            <dd>
+                @{ var type = Model.student_type == true ? "Enfant" : "Adulte"; }
+                @type
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_birthday)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_mobile)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_mobile)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_otherPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_otherPhone)
+            </dd>
+
+            @{if (Model.student_type == false)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.student_adress)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.student_adress)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.student_city)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.student_city)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.student_postalCode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.student_postalCode)
+                </dd>
+                <dt>
+                    Gmap link
+                </dt>
+                <dd>
+                    @{
+                string localization = @Model.student_adress + ',' + @Model.student_city + ',' + @Model.student_postalCode;
+                string localGampForam = (localization != null) ? localization.Replace(' ', '+') : null;
+                    }
+
+                    @if (localGampForam != null)
+                    {
+                        <a target="_blank" href="https://www.google.fr/maps/place/@localGampForam">localisation gmap</a>
+                    }
+
+                </dd>
+            }
+            }
+        </dl>
+
+        @Html.Partial("Partials/_ListParentsDetails")
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Ok</button>
+    </div>
+</div>

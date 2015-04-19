@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Association.Models.Parent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Index</h2>
+    <div class="row form-group">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Index", "Parents", FormMethod.Get, new { enctype = "multipart/form-data", id = "formSearch", data_otf_ajax = "true", @class = "form-inline", data_otf_target = "#listPerson" }))
+            {
+                //@Html.AntiForgeryToken()
+                <label for="testInout">Name search :</label>
+                <input id="testInout" class="form-control" type="text" name="SearchString" data-otf-autocomplete="@Url.Action("AutoCompleteName")" />
+                <input id="submitSearch" class="btn btn-primary" type="submit" value="Recherche par nom" />
+                <input id="resetSearch" class="btn btn-primary" type="button" value="Reset" />
+            }
+
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("Nouveau", "Create", null, new { id = "btnCreate", @class = "btn btn-small btn-primary pull-right action-creation", @onfocus = "$(this).blur()", data_modal = "" })
+                
+
+            </p>
+        </div>
+    </div>
+<div id="msg"></div>
+@Html.Partial("Partials/_listParents", Model)
+
+
+
+
+
+

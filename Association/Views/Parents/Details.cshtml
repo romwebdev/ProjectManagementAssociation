@@ -1,0 +1,103 @@
+﻿@model Association.Models.Parent
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Parent(s) Details</h4>
+    </div>
+
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_civility)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_civility)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_firstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_firstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_mobile)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_mobile)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_otherPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_otherPhone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_adress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_adress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_city)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_city)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parent_postalCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parent_postalCode)
+            </dd>
+
+        </dl>
+    </div>
+    @*<p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.parent_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Ok</button>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model IdentitySample.Models.ApplicationRole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informations du role.</h2>
+<hr />
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            <h4>Utilisateur(s)</h4>
+        </dt>
+        <dd>
+            @if (ViewBag.UserCount == 0)
+            {
+               
+                <p>No users found in this role.</p>
+            }
+            @foreach (var item in ViewBag.Users)
+            {
+                <ul class="list-group " style="max-width: 300px;">
+                    <li class="list-group-item">
+                        @item.UserName
+                    </li>
+                </ul>
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, @class = "btn btn-info" }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

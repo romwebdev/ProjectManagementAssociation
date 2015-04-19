@@ -1,0 +1,166 @@
+﻿@model Association.Models.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edition</h4>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div id="msg"></div>
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.student_id)
+
+            <div class="form-group">
+
+                <div id="photo-edit" class="col-md-6">
+                    @{
+            //data-disabled="true"
+            var pathImage = Model.image;
+            var img = (pathImage != null) ? Url.Content(pathImage) : "";
+            var data_disable = (pathImage != null) ? true : false;
+            var hidden = (pathImage == null) ? "hidden" : "";
+                    }
+
+                    @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class=" form-group  col-md-8">
+                        @Html.TextBoxFor(model => model.image, new { @value = "@img", type = "file", @name = "image", @class = "filestyles", data_buttonText = "Fichier", data_disable = @data_disable, data_icon = "false" })
+                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class=" col-md-10" style="margin-left: 40px;">
+                        <div id="image_preview" class="">
+                            <div class="thumbnail @hidden">
+                                <img class="image-class" style="max-height: 150px;" src="@img" title="" alt="">
+                                @Html.ActionLink("Delete", "DeleteImageEdit", new { id = Model.student_id }, new { id = Model.student_id, @class = "deleteImage" })
+                                @*<div class="caption">*@
+                                @*<h4></h4>*@
+                                @*<p></p>*@
+                                @*<p><button type="button" class="btn btn-default btn-danger">Annuler</button></p>*@
+                                @* </div> *@
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="col-md-6 ">
+                    <div class="row form-group">
+
+                        @Html.Label("Fiche", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 ">
+
+                            @Html.Label("Enfant ", htmlAttributes: new { @class = "control-label" }) @Html.RadioButtonFor(model => model.student_type, true, Model.student_type == true ? new { Checked = "checked" } : null)
+                            @Html.Label("Adulte ", htmlAttributes: new { @class = "control-label" }) @Html.RadioButtonFor(model => model.student_type, false, Model.student_type == false ? new { Checked = "checked" } : null)
+                            @Html.ValidationMessageFor(model => model.student_type, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.Label("Sexe", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 ">
+
+                            @Html.Label("Garçon ", htmlAttributes: new { @class = "control-label" }) @Html.RadioButtonFor(model => model.student_sexe, true, Model.student_sexe == true ? new { Checked = "checked" } : null)
+                            @Html.Label("Fille ", htmlAttributes: new { @class = "control-label" }) @Html.RadioButtonFor(model => model.student_sexe, false, Model.student_sexe == false ? new { Checked = "checked" } : null)
+                            @Html.ValidationMessageFor(model => model.student_sexe, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(model => model.student_name, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.student_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.student_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(model => model.student_firstName, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 ">
+                            @Html.EditorFor(model => model.student_firstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.student_firstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @Html.LabelFor(model => model.student_birthday, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @*format: 'mm/dd/yyyy',*@
+                            @Html.EditorFor(model => model.student_birthday, "{0:dd/mm/yyyy}", new { htmlAttributes = new {@type="text", @class = "form-control form_datetime" } })
+                            @Html.ValidationMessageFor(model => model.student_birthday, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.student_email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.student_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_email, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.student_mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.student_mobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_mobile, "", new { @class = "text-danger" })
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group studentAdress row">
+                @Html.LabelFor(model => model.student_phone, htmlAttributes: new { @class = "control-label col-md-2 studentAdress" })
+                <div class="col-md-4 studentAdress">
+                    @Html.EditorFor(model => model.student_phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_phone, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(model => model.student_otherPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4 studentAdress">
+                    @Html.EditorFor(model => model.student_otherPhone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_otherPhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group studentAdress">
+
+                @Html.LabelFor(model => model.student_adress, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.student_adress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_adress, "", new { @class = "text-danger" })
+                </div>
+                @Html.LabelFor(model => model.student_city, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.student_city, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_city, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group studentAdress">
+
+                @Html.LabelFor(model => model.student_postalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.student_postalCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.student_postalCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.Partial("Partials/_ListParents")
+            <div class="modal-footer">
+                @Html.ActionLink("Nouveau parent", "Create", "Parents", null, new { id = "btnCreate", @class = "btn btn-small btn-primary  action-creation parents ", @onfocus = "$(this).blur()", data_modal = "parent" })
+                <button class="btn" data-dismiss="modal">Cancel</button>
+                <input class="btn btn-primary" type="submit" value="Save" />
+                @*<a onfocus="$(this).blur()" href="/Parents/Edit/2" data-modal="parent" data-backdrop="static" class="btn btn-small btn-primary  action-creation parents">Edit</a>*@
+                </div>
+
+        }
+
+    </div>
+</div>

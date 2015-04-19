@@ -1,0 +1,137 @@
+﻿@model Association.Models.Student
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+    </div>
+    <h3 style="color:red;">Voulez-vous supprimer @Model.FullName ?</h3>
+    <div class="modal-body">
+        <h4>Informations de l'élève :</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.student_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_firstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_firstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_sexe)
+            </dt>
+
+            <dd>
+
+                @{ var sexe = Model.student_sexe == true ? "Garçon" : "Fille"; }
+                @sexe
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_type)
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.student_type)*@
+                @{ var type = Model.student_type == true ? "Enfant" : "Adulte"; }
+                @type
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_birthday)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_mobile)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_mobile)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.student_otherPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.student_otherPhone)
+            </dd>
+            @{
+                if (Model.student_type != true)
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.student_adress)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.student_adress)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.student_city)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.student_city)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.student_postalCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.student_postalCode)
+                    </dd>
+                }
+            }
+
+
+        </dl>
+        @Html.Partial("Partials/_ListParentsDetails")
+
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">No</button>
+            <input class="btn btn-danger" type="submit" value="Yes" />
+        </div>
+    }
+
+</div>
