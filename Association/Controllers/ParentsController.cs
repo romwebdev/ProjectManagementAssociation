@@ -10,14 +10,17 @@ using Association.DAL;
 using Association.Models;
 using Association.Security;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace Association.Controllers
 {
     [AuthorizeRole]
     public class ParentsController : Controller
     {
+        //Context DataBase
         private Context db = new Context();
 
+        [AuthorizeRole(Roles = "view")]
         public ActionResult AutoCompleteName(string SearchString)
         {
             var model = db.Parents
@@ -32,28 +35,28 @@ namespace Association.Controllers
         }
         // GET: Parents
         [AuthorizeRole(Roles = "view")]
-        public ActionResult Index(string SearchString)
+        public ActionResult Index(string SearchString, int? page)
         {
-            var parent = db.Parents.OrderBy(p => p.parent_name).ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var parent = from p in db.Parents select p;
 
             if (!String.IsNullOrEmpty(SearchString))
             {
                 if (SearchString.Contains("*"))
                 {
                     SearchString = SearchString.Replace("*", "");
-                    parent = parent.Where(p => p.parent_name.Contains(SearchString)).ToList();
+                    parent = parent.Where(p => p.parent_name.Contains(SearchString));
                 }
                 else
                 {
-                    parent = parent.Where(p => p.parent_name.Equals(SearchString)).ToList();
+                    parent = parent.Where(p => p.parent_name.Equals(SearchString));
                 }
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("Partials/_listParents", parent);
-            }
+            var parents = parent.OrderBy(p => p.parent_name).ToPagedList(pageNumber, pageSize);
 
-            return View(parent);
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Partials/_listParents", parents) : View(parents);
         }
 
         // GET: Parents/Details/5
@@ -74,7 +77,8 @@ namespace Association.Controllers
                 return PartialView("Details", parent);
 
             }
-            return View(parent);
+
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Details", parent) : View(parent);
         }
 
         // GET: Parents/Create
@@ -86,8 +90,6 @@ namespace Association.Controllers
         }
 
         // POST: Parents/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "parent_id,parent_civility,parent_name,parent_firstName,parent_email,parent_phone,parent_mobile,parent_otherPhone,parent_adress,parent_city,parent_postalCode")] Parent parent)
@@ -106,7 +108,6 @@ namespace Association.Controllers
                     parent.parent_UpdateDate = DateTime.Now;
                     db.Parents.Add(parent);
                     db.SaveChanges();
-                    //return RedirectToAction("Index");
                     return Json(new { success = true, parentName = parent.parent_name.ToUpper() + " " + parent.parent_firstName, parentId = parent.parent_id });
                 }
 
@@ -133,8 +134,6 @@ namespace Association.Controllers
         }
 
         // POST: Parents/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
@@ -146,10 +145,10 @@ namespace Association.Controllers
             }
             var parentToUpdate = db.Parents.Find(id);
             parentToUpdate.parent_UpdateDate = DateTime.Now;
-            
+
             if (ModelState.IsValid)
             {
-                if (TryUpdateModel(parentToUpdate , "" , parentBrind))
+                if (TryUpdateModel(parentToUpdate, "", parentBrind))
                 {
                     try
                     {
@@ -157,7 +156,7 @@ namespace Association.Controllers
                         db.SaveChanges();
                         return Json(new { success = true });
                     }
-                    
+
                     catch (RetryLimitExceededException /* dex */)
                     {
                         //Log the error (uncomment dex variable name and add a line here to write a log.
@@ -182,11 +181,8 @@ namespace Association.Controllers
             {
                 return HttpNotFound();
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("Delete", parent);
-            }
-            return View(parent);
+
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Delete", parent) : View(parent);
         }
 
         // POST: Parents/Delete/5
@@ -197,11 +193,8 @@ namespace Association.Controllers
             Parent parent = db.Parents.Find(id);
             db.Parents.Remove(parent);
             db.SaveChanges();
-            if (Request.IsAjaxRequest())
-            {
-                return Json(new { success = true });
-            }
-            return RedirectToAction("Index");
+
+            return Request.IsAjaxRequest() ? (JsonResult)Json(new { success = true }) : (ActionResult)RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

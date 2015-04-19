@@ -246,11 +246,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\autocomplete\autocomplete.js" />
-    <None Include="Scripts\autocomplete\test" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
-    <Content Include="Scripts\bootstrap-modal\bootstrap-modal.js" />
-    <Content Include="Scripts\bootstrap-modal\bootstrap-modalmanager.js" />
+    <Content Include="Scripts\____bootstrap-modal\bootstrap-modal.js" />
+    <Content Include="Scripts\____bootstrap-modal\bootstrap-modalmanager.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

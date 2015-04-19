@@ -13,13 +13,13 @@ namespace IdentitySample
                 ));
             
             bundles.Add(new ScriptBundle("~/Content/datepickerCss").Include(
-                        "~/Content/datepicker3.css",
-                        "~/Content/datepicker.css"
+                        "~/Content/bootstrap-datepicker3.css"
+                        //"~/Content/datepicker.css"
             ));
             
             bundles.Add(new ScriptBundle("~/bundles/datepickerJs").Include(
                         "~/Scripts/bootstrap-datepicker.js",
-                        "~/Scripts/locales/bootstrap-datepicker.fr.js"
+                        "~/Scripts/locales/bootstrap-datepicker.fr.min.js"
             ));
             
             bundles.Add(new ScriptBundle("~/bundles/jquery/otf").Include(

@@ -24,6 +24,7 @@ namespace Association.Controllers
         private const string pathImage = "~/Images/Students/";
         private Context db = new Context();
 
+        [AuthorizeRole(Roles="view")]
         public ActionResult AutoCompleteGetParents(string SearchParents)
         {
             var model = db.Parents
@@ -38,6 +39,8 @@ namespace Association.Controllers
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        [AuthorizeRole(Roles = "view")]
         public ActionResult AutoCompleteName(string SearchString)
         {
             var model = db.Students
@@ -50,8 +53,9 @@ namespace Association.Controllers
                             });
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-        [HttpGet]
+        
         // GET: Students
+        [HttpGet]
         [AuthorizeRole(Roles = "view")]
         public ActionResult Index(string SearchString, int? page)
         {
@@ -74,10 +78,6 @@ namespace Association.Controllers
                 }
             }
             var students = student.OrderBy(s => s.student_name).ToPagedList(pageNumber, pageSize);
-            //if (Request.IsAjaxRequest())
-            //{
-            //    return PartialView("Partials/_listStudents", students);
-            //}
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("Partials/_listStudents", students) : View(students); 
             
         }
@@ -116,10 +116,7 @@ namespace Association.Controllers
             return PartialView("Create", student);
         }
 
-
         // POST: Students/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(HttpPostedFileBase image, string[] selectedParents, [Bind(Include = "student_id,student_name,student_firstName,student_email,student_type,student_birthday,student_phone,student_mobile,student_otherPhone")] Student student)
@@ -160,14 +157,11 @@ namespace Association.Controllers
                     return Json(new { success = true });
 
                 }
-                //return RedirectToAction("Index");
             }
             // if (Request.IsAjaxRequest()) { return PartialView("Index"); }
             PopulateAssignedParentData(student);
             return PartialView("Create", student);
         }
-
-
 
         // GET: Students/Edit/5
         [HttpGet]
@@ -199,8 +193,6 @@ namespace Association.Controllers
         }
 
         // POST: Students/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, string[] selectedParents, HttpPostedFileBase image)
@@ -427,6 +419,7 @@ namespace Association.Controllers
             }
 
         }
+        
         #endregion
 
     }

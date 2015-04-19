@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Association.Models.Parent>
+﻿@*@model IEnumerable<Association.Models.Parent>*@
+@model PagedList.IPagedList<Association.Models.Parent>
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Index";
+    }
 
     <h2>Index</h2>
     <div class="row form-group">
@@ -20,13 +21,13 @@
         <div class="col-md-4">
             <p>
                 @Html.ActionLink("Nouveau", "Create", null, new { id = "btnCreate", @class = "btn btn-small btn-primary pull-right action-creation", @onfocus = "$(this).blur()", data_modal = "" })
-                
+
 
             </p>
         </div>
     </div>
-<div id="msg"></div>
-@Html.Partial("Partials/_listParents", Model)
+    <div id="msg"></div>
+    @Html.Partial("Partials/_listParents", Model)
 
 
 

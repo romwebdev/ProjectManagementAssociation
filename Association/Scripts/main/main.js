@@ -277,7 +277,7 @@ function inputFileStyle() {
 function datePickerForm() {
     //var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
     //$.fn.bootstrapDP = datepicker;
-    //$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
     var FromEndDate = new Date();
     $(".form_datetime").datepicker(
         {

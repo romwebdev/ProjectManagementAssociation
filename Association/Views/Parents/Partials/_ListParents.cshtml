@@ -1,113 +1,117 @@
-﻿@model IEnumerable<Association.Models.Parent>
+﻿@*@model IEnumerable<Association.Models.Parent>*@
+@model PagedList.IPagedList<Association.Models.Parent>
+@using PagedList.Mvc;
 
+    <div id="listPerson" class="table-responsive">
 
-<div id="listPerson" class="table-responsive">
-
-    @if (Model.Count() == 0)
+        @if (Model.Count() == 0)
     {
-        @:<p>aucune donnée</p>
+            @:<p>aucune donnée</p>
     }
     else
     {
 
-        <table class="table table-striped vert-align">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.parent_civility)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.parent_firstName)
-                    </th>*@
-                <th>
-                    @Html.DisplayNameFor(model => model.parent_email)
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.parent_phone)*@
-                    Téléphone
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.parent_mobile)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.parent_otherPhone)
-                    </th>*@
-                <th>
-                    @Html.DisplayNameFor(model => model.parent_adress)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.parent_city)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.parent_postalCode)
-                    </th>*@
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+            <table class="table table-striped vert-align">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.parent_civility)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.parent_firstName)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.parent_email)
-                    </td>
-                    <td>
-                        @if (item.parent_phone != null && item.parent_phone != "")
-                        {
-                            @Html.DisplayNameFor(model => model.parent_phone)
-                            @: :<b>
-                                @Html.DisplayFor(modelItem => item.parent_phone)
-                                @:</b>
-                            @:<br />
-            }
-                        @if (item.parent_mobile != null && item.parent_mobile != "")
-                        {
+                    <th>
+                        @Html.DisplayNameFor(model => model.Single().parent_civility)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Single().FullName)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.parent_firstName)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Single().parent_email)
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.parent_phone)*@
+                        Téléphone
+                    </th>
+                    @*<th>
                             @Html.DisplayNameFor(model => model.parent_mobile)
-                            @: :<b>
-                                @Html.DisplayFor(modelItem => item.parent_mobile)
-                                @:</b>
-                            @:<br />
-            }
-                        @if (item.parent_otherPhone != null && item.parent_otherPhone != "")
-                        {
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.parent_otherPhone)
-                            @: :<b>
-                                @Html.DisplayFor(modelItem => item.parent_otherPhone)
-                                @:</b>
-                            @:<br />
-            }
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.parent_mobile)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Single().parent_adress)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.parent_city)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.parent_postalCode)
+                        </th>*@
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.parent_civility)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.parent_otherPhone)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.parent_adress),
-                        <br />
-                        @Html.DisplayFor(modelItem => item.parent_postalCode)
-                        @Html.DisplayFor(modelItem => item.parent_city)
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.parent_firstName)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.parent_email)
+                        </td>
+                        <td>
+                            @if (item.parent_phone != null && item.parent_phone != "")
+                        {
+                                @Html.DisplayNameFor(model => model.Single().parent_phone)
+                                @: :<b>
+                                    @Html.DisplayFor(modelItem => item.parent_phone)
+                                    @:</b>
+                                @:<br />
+            }
+                            @if (item.parent_mobile != null && item.parent_mobile != "")
+                        {
+                                @Html.DisplayNameFor(model => model.Single().parent_mobile)
+                                @: :<b>
+                                    @Html.DisplayFor(modelItem => item.parent_mobile)
+                                    @:</b>
+                                @:<br />
+            }
+                            @if (item.parent_otherPhone != null && item.parent_otherPhone != "")
+                        {
+                                @Html.DisplayNameFor(model => model.Single().parent_otherPhone)
+                                @: :<b>
+                                    @Html.DisplayFor(modelItem => item.parent_otherPhone)
+                                    @:</b>
+                                @:<br />
+            }
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.parent_mobile)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.parent_otherPhone)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.parent_adress),
+                            <br />
+                            @Html.DisplayFor(modelItem => item.parent_postalCode)
+                            @Html.DisplayFor(modelItem => item.parent_city)
 
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.parent_id }, htmlAttributes: new { @class = "modal-popup action-edit-male", @onfocus = "$(this).blur()", data_modal = "" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.parent_id }, htmlAttributes: new { @class = " modal-popup action-delete-male ", @onfocus = "$(this).blur()", data_modal = "" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.parent_id }, htmlAttributes: new { @class = " modal-popup action-details-male", @onfocus = "$(this).blur()", data_modal = "" })
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.parent_id }, htmlAttributes: new { @class = "modal-popup action-edit-male", @onfocus = "$(this).blur()", data_modal = "" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.parent_id }, htmlAttributes: new { @class = " modal-popup action-delete-male ", @onfocus = "$(this).blur()", data_modal = "" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.parent_id }, htmlAttributes: new { @class = " modal-popup action-details-male", @onfocus = "$(this).blur()", data_modal = "" })
+                        </td>
+                    </tr>
             }
 
-        </table>
+            </table>
     }
-</div>
+        <div id="contentPager">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
