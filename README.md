@@ -17,6 +17,6 @@ Le projet comprend un ensemble de fonctionnalité
 
 Prochainement :
   - Fonctionnalité dbContext insertion via script SQL file et/ou procédure stockée
-  - Développement de la gestion des inscriptions
-        - modal, système de filtre, génération document (pdf/docx). 
+  - Développement de la gestion des inscriptions :
+      - modal, système de filtre, génération document (pdf/docx). 
   - Développement de la gestion des cours (avec historique, plus des catégories)
