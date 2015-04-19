@@ -9,12 +9,14 @@ Le projet comprend un ensemble de fonctionnalité
        - gestion des rôles (personnalisée)
        - gestion des users (personnalisée)
   - gestion des élèves 
+       - upload image (ajax fonctionnalités)
+       - datepicker (language : fr)
   - gestion relation elève - parents
   - utilisation de bootstrap 3 (multiple - modal, ajax)
   - pagination ajax (pagedlist.mvc)
 
 Prochainement :
-  - fonctionnalité dbContext insertion via script SQL file et/ou procédure stockée
+  - Fonctionnalité dbContext insertion via script SQL file et/ou procédure stockée
   - Développement de la gestion des inscriptions
         - modal, système de filtre, génération document (pdf/docx). 
   - Développement de la gestion des cours (avec historique, plus des catégories)
