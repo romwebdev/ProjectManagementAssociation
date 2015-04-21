@@ -177,12 +177,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="ViewsModel\AccountViewModels.cs" />
+    <Compile Include="ViewsModel\AdminViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewsModel\IdentityModels.cs" />
+    <Compile Include="ViewsModel\ManageViewModels.cs" />
     <Compile Include="Models\Parent.cs" />
     <Compile Include="Models\Realisation.cs" />
     <Compile Include="Models\Student.cs" />
