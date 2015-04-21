@@ -1,6 +1,7 @@
 ﻿using Association.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +9,8 @@ namespace Association.DAL
 {
     public class ContextInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<Context>
     {
-        protected override void Seed(Context context)
-        {
-            Parent parent01 = new Parent
+        public void seedObject (Context context) {
+                        Parent parent01 = new Parent
             {
                 parent_name = "Romeo",
                 parent_firstName = "Double Romeo",
@@ -19,8 +19,8 @@ namespace Association.DAL
                 parent_phone = "0490858587",
                 parent_mobile = "0650505050",
                 parent_adress = "12 rue de la république",
-                parent_city = "Orange",
-                parent_postalCode = "84100",
+                parent_city = "Montpellier",
+                parent_postalCode = "34000",
                 parent_civility = Civility.Père,
                 parent_createDate = DateTime.Now,
                 parent_UpdateDate = DateTime.Now
@@ -34,8 +34,8 @@ namespace Association.DAL
                 parent_phone = "0991848478",
                 parent_mobile = "0754266548",
                 parent_adress = "156 avenue des courèges",
-                parent_city = "Orange",
-                parent_postalCode = "84100",
+                parent_city = "Montpellier",
+                parent_postalCode = "34100",
                 parent_civility = Civility.Mère,
                 parent_createDate = DateTime.Now,
                 parent_UpdateDate = DateTime.Now
@@ -50,8 +50,8 @@ namespace Association.DAL
                 parent_phone = "",
                 parent_mobile = "0745897898",
                 parent_adress = "4 av du 11 novembre",
-                parent_city = "Orange",
-                parent_postalCode = "84100",
+                parent_city = "Montpellier",
+                parent_postalCode = "34400",
                 parent_civility = Civility.Père,
                 parent_createDate = DateTime.Now,
                 parent_UpdateDate = DateTime.Now
@@ -66,8 +66,8 @@ namespace Association.DAL
                 parent_phone = "0432154585",
                 parent_mobile = "",
                 parent_adress = "45 rue jean jaures",
-                parent_city = "Avignon",
-                parent_postalCode = "84000",
+                parent_city = "Montpellier",
+                parent_postalCode = "34000",
                 parent_civility = Civility.Mère,
                 parent_createDate = DateTime.Now,
                 parent_UpdateDate = DateTime.Now
@@ -81,8 +81,8 @@ namespace Association.DAL
                 parent_phone = "0432154585",
                 parent_mobile = "0645515252",
                 parent_adress = "45 rue jean jaures",
-                parent_city = "Avignon",
-                parent_postalCode = "84000",
+                parent_city = "Montpellier",
+                parent_postalCode = "34000",
                 parent_civility = Civility.Père,
                 parent_createDate = DateTime.Now,
                 parent_UpdateDate = DateTime.Now
@@ -98,7 +98,7 @@ namespace Association.DAL
                              student_firstName ="Rodolphe",
                              student_birthday=DateTime.Parse("1998-06-15"),
                              student_email="rodolph.ly@example.com",
-                             student_mobile="0605020300",
+                             student_mobile="0664520300",
                              student_type= false,
                              student_phone= "",
                              student_otherPhone="",
@@ -142,23 +142,32 @@ namespace Association.DAL
 
 
 
-            var categories = new List<Category>
-            {
-                new Category {category_name="Jazz 1"},
-                new Category {category_name="Jazz 2"},
-                new Category {category_name="Jazz 3"},
-                new Category {category_name="Jazz 4"},
-                new Category {category_name="Eveil"},
-                new Category {category_name="hip hop 1"},
-                new Category {category_name="hip hop 2"},
-                new Category {category_name="hip hop 3"},
-                new Category {category_name="Classique 1"},
-                new Category {category_name="Classique 2"},
-                new Category {category_name="Classique 3"},
+            //var categories = new List<Category>
+            //{
+            //    new Category {category_name="Jazz 1"},
+            //    new Category {category_name="Jazz 2"},
+            //    new Category {category_name="Jazz 3"},
+            //    new Category {category_name="Jazz 4"},
+            //    new Category {category_name="Eveil"},
+            //    new Category {category_name="hip hop 1"},
+            //    new Category {category_name="hip hop 2"},
+            //    new Category {category_name="hip hop 3"},
+            //    new Category {category_name="Classique 1"},
+            //    new Category {category_name="Classique 2"},
+            //    new Category {category_name="Classique 3"},
 
-            };
-            categories.ForEach(c => context.Categories.Add(c));
-            context.SaveChanges();
+            //};
+            //categories.ForEach(c => context.Categories.Add(c));
+            //context.SaveChanges();
+        }
+        protected override void Seed(Context context)
+        {
+            //Seed manuellement 
+            //seedObject(context);
+
+            //Seed large via script SQL 
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin", string.Empty) + "\\DAL";
+            context.Database.ExecuteSqlCommand(File.ReadAllText(baseDir + "\\script.sql"));
 
 
         }

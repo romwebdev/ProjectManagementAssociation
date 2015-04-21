@@ -240,6 +240,7 @@
     <Content Include="Content\themes\base\css\jquery-ui.structure.min.css" />
     <Content Include="Content\themes\base\css\jquery-ui.theme.css" />
     <Content Include="Content\themes\base\css\jquery-ui.theme.min.css" />
+    <EmbeddedResource Include="DAL\script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
