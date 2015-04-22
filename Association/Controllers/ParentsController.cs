@@ -152,9 +152,19 @@ namespace Association.Controllers
                 {
                     try
                     {
-                        db.Entry(parentToUpdate).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return Json(new { success = true });
+                        bool parentNameExist = db.Parents.Any(p => p.parent_name == parentToUpdate.parent_name);
+                        bool parentFirstNameExist = db.Parents.Any(p => p.parent_firstName == parentToUpdate.parent_firstName);
+                        if (parentNameExist && parentFirstNameExist)
+                        {
+                            return Json(new { error = true, name = parentToUpdate.parent_name.ToUpper() + " " + parentToUpdate.parent_firstName });
+                        }
+                        else
+                        {
+                            db.Entry(parentToUpdate).State = EntityState.Modified;
+                            db.SaveChanges();
+                            return Json(new { success = true });
+                        }
+                        
                     }
 
                     catch (RetryLimitExceededException /* dex */)
