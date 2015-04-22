@@ -34,7 +34,7 @@ function initMain() {
 *****************************************************************************/
 
 function resetFormSearch() {
-    $("#resetSearch").on("click", function (e) {
+    $("#resetSearch").on("click", function (event) {
         //e.preventDefault();
         $(".ui-autocomplete-input").val("").delay("200");
         refresh();
@@ -95,6 +95,7 @@ function submitAutoCompleteForm(event, ui) {
             var $target = $($form.attr("data-otf-target"));
             $target.replaceWith(data);
             initMain();
+
         });
         return false;
     }
@@ -170,11 +171,10 @@ function bindForm(dialog, id) {
                 }
                 else {
                     $('#myModalContent' + id).html(result);
-                    $.validator.unobtrusive.parse($('#myModal' + id));
-                    bindForm(dialog, id);
                     //fonction regroupant divers fonctions pour le form
                     initializationForm();
-
+                    bindForm(dialog, id);
+                    
                 }
             },
             error: function (data) {
@@ -210,9 +210,11 @@ function refresh() {
         }
     };
     $.ajax(option).done(function (result) {
-
-        $('#listPerson').replaceWith(result);
+       
+        //$('#listPerson').replaceWith(result);
+        $('#listPerson').html(result);
         initMain();
+        //modal();
     });
 
     return false;
@@ -235,7 +237,7 @@ function modal() {
             modalParent();
         });
 
-        $.validator.unobtrusive.parse($('#myModal'));
+
         return false;
     });
 
@@ -277,7 +279,7 @@ function inputFileStyle() {
 function datePickerForm() {
     //var datepicker = $.fn.datepicker.noConflict(); // return $.fn.datepicker to previously assigned value
     //$.fn.bootstrapDP = datepicker;
-    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    //$.fn.datepicker.defaults.format = "dd/mm/yyyy";
     var FromEndDate = new Date();
     $(".form_datetime").datepicker(
         {
@@ -285,7 +287,8 @@ function datePickerForm() {
             clearBtn: true,
             todayBtn: true,
             autoclose: true,
-            endDate: FromEndDate,
+            orientation: 'top',
+            //endDate: FromEndDate,
             startView: 2,
             todayHighlight: true,
             language: 'fr'

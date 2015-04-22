@@ -138,7 +138,7 @@ namespace Association.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
         {
-            string[] parentBrind = new string[] { "parent_civility", "parent_name ", "parent_firstName", "parent_email", "parent_phone", "parent_mobile", "parent_otherPhone", "parent_adress", "parent_city", "parent_postalCode" };
+            string[] parentBind = new string[] { "parent_civility", "parent_name ", "parent_firstName", "parent_email", "parent_phone", "parent_mobile", "parent_otherPhone", "parent_adress", "parent_city", "parent_postalCode" };
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -148,7 +148,7 @@ namespace Association.Controllers
 
             if (ModelState.IsValid)
             {
-                if (TryUpdateModel(parentToUpdate, "", parentBrind))
+                if (TryUpdateModel(parentToUpdate, "", parentBind))
                 {
                     try
                     {

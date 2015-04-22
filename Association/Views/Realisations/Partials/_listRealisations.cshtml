@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Association.Models.Realisation>
+
+<div id="listPerson" class="table-responsive">
+    <div class="col-md-12 form-group">
+        
+            @Html.ActionLink("Create New", "Create", null, new { id = "btnCreate", @class = "pull-right action-creation action-cal-create", @onfocus = "$(this).blur()", data_modal = "" })
+        
+    </div>
+    @if (Model.Count() == 0)
+    {
+        @:<p>aucune donnée</p>
+    }
+    else
+    {
+        <table class="table table-striped vert-align">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().rea_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().rea_dateFirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().rea_dateLast)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rea_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rea_dateFirst)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rea_dateLast)
+                    </td>
+                    <td class="pull-right">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.rea_id }, htmlAttributes: new { @class = "modal-popup action-cal-edit", @onfocus = "$(this).blur()", data_backdrop = "static", data_modal = "" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.rea_id }, htmlAttributes: new { @class = " modal-popup action-cal-infos", @onfocus = "$(this).blur()", data_modal = "" })  |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.rea_id }, htmlAttributes: new { @class = " modal-popup action-cal-delete", @onfocus = "$(this).blur()", data_modal = "" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+</div>

@@ -71,6 +71,16 @@ input[type="checkbox"].input-validation-error {
     text-indent: -999em;
 }
 
+.action-create-person{
+    background-image: url(images/action-create.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+    border: none;
+    text-indent: -999em;
+}
 
 /*.action-edit {
     background-image: url(images/action-edit-16.png);
@@ -114,6 +124,50 @@ input[type="checkbox"].input-validation-error {
 }
 .action-details-male {
     background-image: url(images/action-details-m.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cal-create {
+    background-image: url(images/cal-create.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cal-edit {
+    background-image: url(images/cal-edit.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cal-infos {
+    background-image: url(images/cal-infos.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cal-delete {
+    background-image: url(images/cal-delete.png);
     background-repeat: no-repeat;
     background-color: transparent;
     display: inline-block;

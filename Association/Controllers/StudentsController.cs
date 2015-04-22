@@ -260,7 +260,7 @@ namespace Association.Controllers
                 return PartialView("Delete", student);
 
             }
-            return View(student);
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Delete", student) : View(student);
         }
 
         // POST: Students/Delete/5

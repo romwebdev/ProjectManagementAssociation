@@ -1,0 +1,61 @@
+﻿@model Association.Models.Realisation
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Details</h4>
+    </div>
+
+
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.rea_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rea_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.rea_dateFirst)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rea_dateFirst)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.rea_dateLast)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rea_dateLast)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.rea_createDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rea_createDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.rea_UpdateDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.rea_UpdateDate)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Ok</button>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Association.Models.Realisation>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    var currentController = '@ViewContext.RouteData.Values["controller"]';
+</script>
+
+<h2>Réalisation(s)</h2>
+
+<br />
+<div id="msg"></div>
+@Html.Partial("Partials/_listRealisations", Model)
