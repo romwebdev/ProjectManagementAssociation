@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Association.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="listPerson" class="table-responsive">
+    <h2>Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { id = "btnCreate", @class = "pull-right action-creation action-cat-create", @onfocus = "$(this).blur()", data_modal = "" })
+    </p>
+    <table class="table table-striped vert-align table-condensed">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cat_name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cat_name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.cat_id }, htmlAttributes: new { @class = "modal-popup action-cat-edit", @onfocus = "$(this).blur()", data_backdrop = "static", data_modal = "" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.cat_id }, htmlAttributes: new { @class = "modal-popup action-cat-delete", @onfocus = "$(this).blur()", data_backdrop = "static", data_modal = "" }) |
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

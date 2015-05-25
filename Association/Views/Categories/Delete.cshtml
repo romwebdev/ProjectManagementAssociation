@@ -1,0 +1,38 @@
+﻿@model Association.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+    </div>
+
+    <div class="modal-body">
+        <h3 class="text-danger">Voulez-vous supprimer @Model.cat_name ?</h3>
+        <h4>Informations de l'élève :</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_name)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">No</button>
+                <input class="btn btn-danger" type="submit" value="Yes" />
+            </div>
+        }
+    </div>
+</div>

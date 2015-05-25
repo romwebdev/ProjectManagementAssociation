@@ -13,100 +13,97 @@ using Association.Security;
 
 namespace Association.Controllers
 {
-     [AuthorizeRole]
-    public class RealisationsController : Controller
+    [AuthorizeRole]
+    public class CategoriesController : Controller
     {
         private Context db = new Context();
 
-        // GET: Realisations
-         [AuthorizeRole(Roles = "view")]
+        // GET: Categories
+        [AuthorizeRole(Roles = "view")]
         public ActionResult Index()
         {
-            var realisation = db.Realisations.ToList();
-            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Partials/_listRealisations", realisation) : View(realisation);
-
+            var categories = db.Categories.ToList();
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Index", categories) : View(categories);
         }
 
-        // GET: Realisations/Details/5
-         [AuthorizeRole(Roles = "view")]
+        // GET: Categories/Details/5
+        [AuthorizeRole(Roles = "view")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realisation realisation = db.Realisations.Find(id);
-            if (realisation == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-
-            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Details", realisation) : View(realisation);
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Details", category) : View(category);
         }
 
-        // GET: Realisations/Create
-         [AuthorizeRole(Roles = "create,edit")]
+        // GET: Categories/Create
+        [AuthorizeRole(Roles = "create,edit")]
         public ActionResult Create()
         {
             return PartialView("Create");
         }
 
-        // POST: Realisations/Create
+        // POST: Categories/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rea_id,rea_name,rea_dateFirst,rea_dateLast,rea_createDate,rea_UpdateDate")] Realisation realisation)
+        public ActionResult Create([Bind(Include = "cat_id,cat_name, cat_UpdateDate, cat_createDate")] Category category)
         {
+
             if (ModelState.IsValid)
             {
-                var yearFirst = realisation.rea_dateFirst.Year.ToString();
-                var yearLast = realisation.rea_dateLast.Year.ToString();
-                realisation.rea_name = "Année " + yearFirst + "-" + yearLast;
-                realisation.rea_createDate = DateTime.Now;
-                realisation.rea_UpdateDate = DateTime.Now;
+                category.cat_createDate = DateTime.Now;
+                category.cat_UpdateDate = DateTime.Now;
 
-                bool NameExist = db.Realisations.Any(r => r.rea_name == realisation.rea_name);
+                bool NameExist = db.Categories.Any(c => c.cat_name == category.cat_name);
                 if (NameExist)
                 {
-                    return Json(new { error = true, name = realisation.rea_name.ToUpper() });
+                    return Json(new { error = true, name = category.cat_name.ToUpper() });
                 }
                 else
                 {
-                    db.Realisations.Add(realisation);
+                    db.Categories.Add(category);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
+
             }
 
-            return PartialView("Create", realisation);
+            return PartialView("Create", category);
         }
 
-        // GET: Realisations/Edit/5
-         [AuthorizeRole(Roles = "create,edit")]
+        // GET: Categories/Edit/5
+        [AuthorizeRole(Roles = "create,edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realisation realisation = db.Realisations.Find(id);
-            if (realisation == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return PartialView("Edit", realisation);
+            return PartialView("Edit", category);
         }
 
-        // POST: Realisations/Edit/5
+        // POST: Categories/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
         {
-            string[] RealisationBind = new string[] { "rea_name", "rea_dateFirst", "rea_dateLast" };
-            var realToUpdate = db.Realisations.Find(id);
+            string[] CategoryBind = new string[] { "cat_name" };
+            var catToUpdate = db.Categories.Find(id);
 
             if (id == null)
             {
@@ -114,33 +111,24 @@ namespace Association.Controllers
             }
 
             if (ModelState.IsValid)
-            
             {
-                if (TryUpdateModel(realToUpdate, "", RealisationBind))
+                if (TryUpdateModel(catToUpdate, "", CategoryBind))
                 {
                     try
                     {
-                        var yearFirst = realToUpdate.rea_dateFirst.Year.ToString();
-                        var yearLast = realToUpdate.rea_dateLast.Year.ToString();
-
-                        realToUpdate.rea_name = "Année " + yearFirst + "-" + yearLast;
-                        realToUpdate.rea_UpdateDate = DateTime.Now;
-
-                        bool NameExist = db.Realisations.Any(r => r.rea_name == realToUpdate.rea_name);
+                        catToUpdate.cat_UpdateDate = DateTime.Now;
+                        bool NameExist = db.Categories.Any(c => c.cat_name == catToUpdate.cat_name);
                         if (NameExist)
                         {
-                            return Json(new { error = true, name = realToUpdate.rea_name.ToUpper() });
+                            return Json(new { error = true, name = catToUpdate.cat_name.ToUpper() });
                         }
                         else
                         {
-                            db.Entry(realToUpdate).State = EntityState.Modified;
+                            db.Entry(catToUpdate).State = EntityState.Modified;
                             db.SaveChanges();
                             return Json(new { success = true });
                         }
 
-
-                        
-                        //return RedirectToAction("Index");
                     }
                     catch (RetryLimitExceededException)
                     {
@@ -148,38 +136,36 @@ namespace Association.Controllers
                     }
                 }
 
-
             }
-            return PartialView("Edit", realToUpdate);
+            return PartialView("Edit", catToUpdate);
         }
 
-        // GET: Realisations/Delete/5
-         [AuthorizeRole(Roles = "delete")]
+        // GET: Categories/Delete/5
+        [AuthorizeRole(Roles = "delete")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Realisation realisation = db.Realisations.Find(id);
-            if (realisation == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Delete", realisation) : View(realisation);
+            return Request.IsAjaxRequest() ? (ActionResult)PartialView("Delete", category) : View(category);
         }
 
-        // POST: Realisations/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Realisation realisation = db.Realisations.Find(id);
-            db.Realisations.Remove(realisation);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
 
             return Request.IsAjaxRequest() ? (JsonResult)Json(new { success = true }) : (ActionResult)RedirectToAction("Index");
-
         }
 
         protected override void Dispose(bool disposing)

@@ -14,6 +14,7 @@
 
 
     <div class="modal-body  form-horizontal">
+        <div id="msg"></div>
         @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()

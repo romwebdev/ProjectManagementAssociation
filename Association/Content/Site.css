@@ -177,6 +177,39 @@ input[type="checkbox"].input-validation-error {
     text-indent: -999em;
 }
 
+
+.action-cat-edit {
+    background-image: url(images/category-edit.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cat-create {
+    background-image: url(images/category-create.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
+
+.action-cat-delete {
+    background-image: url(images/category-delete.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: none;
+    text-indent: -999em;
+}
 span.glyphicon {
     vertical-align: middle;
     margin-top: 5px;
