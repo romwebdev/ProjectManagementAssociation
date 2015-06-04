@@ -28,7 +28,7 @@ namespace IdentitySample.Models
         [Display(Name = "Code postal")]
         public string PostalCode { get; set; }
 
-        [Display(Name="Utilisateur")]
+        [Display(Name = "Utilisateur")]
         public string FullName
         {
             get
