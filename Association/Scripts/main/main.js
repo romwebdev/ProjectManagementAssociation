@@ -201,9 +201,10 @@ function msgAlert(el, msg, success) {
 //      - bindform() 
 //      - resetFormSearch()
 function refresh() {
-
+    var urltest = window.location.href;
     var option = {
-        url: VarsApp.actionIndex, //variable definie dans layout
+        //url: VarsApp.actionIndex, //variable definie dans layout
+        url: urltest,
         type: 'GET',
         success: function (result) {
             msgAlert('.body-content #msg', "<div class='alert alert-success'>Le contenu a été mis à jour</div>", true);

@@ -36,9 +36,14 @@ namespace Association.DAL
                        t.MapRightKey("parent_id");
                        t.ToTable("StudentParent");
                     });
-                        
-               
 
+
+            modelBuilder.Entity<Realisation>()
+                .HasOptional(r => r.Course)
+                .WithRequired(r => r.Realisation);
+
+            modelBuilder.Entity<Course>()
+                .HasKey(c => c.realisationID);
         
         }
     }

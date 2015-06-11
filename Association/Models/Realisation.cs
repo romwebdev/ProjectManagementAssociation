@@ -7,18 +7,40 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Association.Models
 {
-    public class Realisation
+    public class Realisation : IValidatableObject
     {
         [Key]
-        public int realisation_id { get; set; }
+        public int rea_id { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime realisation_dateFirst { get; set; }
+        [Display(Name = "Nom")]
+        public string rea_name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime realisation_dateLast { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Date de début")]
+        public DateTime rea_dateFirst { get; set; }
 
-        public string realisation_reference { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Date de fin")]
+        public DateTime rea_dateLast { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Date de création")]
+        public DateTime rea_createDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Date de modification")]
+        public DateTime rea_UpdateDate { get; set; }
+
+        public virtual Course Course { get; set; } 
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (rea_dateLast < rea_dateFirst)
+            {
+                yield return new ValidationResult("La date de début doit être supérieure à la date de fin");
+            }
+        }
 
     }
+   
 }
