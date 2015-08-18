@@ -24,5 +24,7 @@ namespace Association.Models
         [Display(Name = "Date de modification")]
         public DateTime cat_UpdateDate { get; set; }
 
+        //one to one relation course
+        public virtual ICollection<Course> Courses{ get; set; }
     }
 }

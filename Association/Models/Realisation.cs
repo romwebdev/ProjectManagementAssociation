@@ -31,7 +31,7 @@ namespace Association.Models
         [Display(Name = "Date de modification")]
         public DateTime rea_UpdateDate { get; set; }
 
-        public virtual Course Course { get; set; } 
+        public virtual ICollection<Course> Courses { get; set; } 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

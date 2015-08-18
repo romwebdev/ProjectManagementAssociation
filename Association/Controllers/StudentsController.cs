@@ -32,7 +32,7 @@ namespace Association.Controllers
                             .Take(10)
                             .Select(p => new
                             {
-                                label = p.parent_name.ToUpper(),
+                                label =  p.parent_name.ToUpper(),
                                 value = p.parent_name.ToUpper() + " " + p.parent_firstName,
                                 id = p.parent_id
                             });

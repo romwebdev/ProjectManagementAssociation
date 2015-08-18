@@ -5,6 +5,7 @@ $(function () {
     //fonctionnalité pour reset le formulaire
     //appel de la fonction refresh ajax
     resetFormSearch();
+    fullcalendar();
 
 });
 
@@ -32,6 +33,41 @@ function initMain() {
 /*****************************************************************************
 *********************************** Fonctions ********************************
 *****************************************************************************/
+function fullcalendar(){
+
+    $('#calendar').fullCalendar({
+
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'agendaWeek,agendaDay'
+        },
+        lang: 'fr',
+        minTime: '09:00',
+        maxTime: '22:00',
+        editable: false,
+        defaultView: 'agendaWeek',
+        //eventLimit: true, // allow "more" link when too many events
+        businessHours: {
+
+            start: '09:00',
+            end: '22:00',
+            dow: [1, 2, 3, 4, 5, 6]
+        },
+        events: "/Courses/getCourseCalendar/",
+        eventClick: function (calEvent, jsEvent, view) {
+
+            alert('Event: ' + calEvent.title);
+            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            alert('View: ' + view.name);
+
+            // change the border color just for fun
+            $(this).css('border-color', 'red');
+
+        }
+    });
+
+};
 
 function resetFormSearch() {
     $("#resetSearch").on("click", function (event) {

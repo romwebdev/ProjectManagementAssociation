@@ -11,7 +11,13 @@ namespace IdentitySample
             bundles.Add(new ScriptBundle("~/bundles/autocompleteParents").Include(
                      "~/Scripts/autocomplete/autocomplete.js"
                 ));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/fullCalendar").Include(
+                "~/Scripts/fullcalendar/moment.min.js",     
+                "~/Scripts/fullcalendar/*.js"
+                      
+                ));
+
             bundles.Add(new ScriptBundle("~/Content/datepickerCss").Include(
                         "~/Content/bootstrap-datepicker3.css"
                         //"~/Content/datepicker.css"
@@ -43,6 +49,11 @@ namespace IdentitySample
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new StyleBundle("~/Content/fullcalendar").Include(
+                      "~/Content/fullcalendar/fullcalendar.css"
+                      //"~/Content/fullcalendar/fullcalendar.print.css"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

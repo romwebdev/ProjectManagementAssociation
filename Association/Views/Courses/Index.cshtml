@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Association.Models.Course>
+@Styles.Render("~/Content/fullcalendar")
+
+
+
+<script>
+
+
+
+</script>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.cat_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Realisation.rea_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_startTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_endTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course_day)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.cat_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Realisation.rea_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course_startTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course_endTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course_day)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.course_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.course_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.course_id })
+        </td>
+    </tr>
+}
+
+</table>
+<div id='calendar'></div>
+
+
